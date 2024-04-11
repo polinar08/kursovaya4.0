@@ -1,5 +1,5 @@
 from src.vacancy import Vacancy
-from src.translation import vac_user
+from src.vac_interp import vac_user
 
 user_vac = vac_user()
 
