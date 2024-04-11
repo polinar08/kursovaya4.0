@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 import json
+import os
 
 
 class Methods(ABC):
@@ -29,18 +30,29 @@ class ListVacancies(Methods):
             f.write(vacancies_json)
 
     def add_vacancy(self, name_vac):
-        """Добавляет вакансии в файл по названию"""
+        """Метод для добавления вакансий в файл"""
+
+        # Путь к файлу с моими вакансиями
+        my_vacancies_path = "../data/my_vacancies.json"
+
+        # Проверка существования файла и его инициализация, если он пустой или не существует
+        if not os.path.exists(my_vacancies_path) or os.path.getsize(my_vacancies_path) == 0:
+            with open(my_vacancies_path, "w", encoding="utf8") as f:
+                json.dump([], f)  # Инициализация файла пустым списком
+
         with open("../data/vacancies.json", "r", encoding="utf8") as f:
             list_vacancies = json.load(f)
-        with open("../data/my_vacancies.json", "r", encoding="utf8") as f:
-            list = json.load(f)
+
+        with open(my_vacancies_path, "r", encoding="utf8") as f:
+            list_my_vacancies = json.load(f)
+
         for v in list_vacancies:
             if name_vac in v["name"]:
-                list.append(v)
-        list_vacancies_add = json.dumps(list, ensure_ascii=False)
-        with open("../data/my_vacancies.json", "w", encoding="utf8") as f:
-            f.write(list_vacancies_add)
-        return list_vacancies_add
+                list_my_vacancies.append(v)
+
+        with open(my_vacancies_path, "w", encoding="utf8") as f:
+            json.dump(list_my_vacancies, f, ensure_ascii=False)
+        return list_my_vacancies
 
     def get_data(self, criterion):
         """Получает данные из файла по указанному критерию"""
