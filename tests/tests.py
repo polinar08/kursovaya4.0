@@ -1,7 +1,7 @@
 import pytest
 import json
 from src.API_service import FromHHru
-from src.method import ListVacancies
+from src.JsonLoader import VacancyManager
 
 
 def test_get_vacancies():
@@ -13,7 +13,7 @@ def test_get_vacancies():
 
 
 def test_add_vacancy():
-    lv = ListVacancies()
+    lv = VacancyManager()
     test_vacancy = "Тестовая вакансия"
     lv.add_vacancy(test_vacancy)
 
