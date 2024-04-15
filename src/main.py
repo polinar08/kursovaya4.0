@@ -1,5 +1,5 @@
 from src.API_service import FromHHru
-from src.method import VacancyManager
+from src.JsonLoader import VacancyManager
 from src.vac_sorting import sorting
 
 
