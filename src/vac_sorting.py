@@ -5,7 +5,6 @@ user_vac = vac_user()
 
 
 def sorting(n):
-
     """Сортируем и получаем запрошенное количество вакансий для вывода по зарплате"""
 
     sorted_list = sorted(user_vac, key=lambda x: x['salary'], reverse=True)
@@ -17,6 +16,6 @@ def sorting(n):
         else:
             if vac["salary"] is None:
                 vac["salary"] = 0
-        sort_vac.append(Vacancy(vac['name'], vac['salary'], vac['currency'], vac['url'], vac["snippet"]['requirement']))
+        sort_vac.append(Vacancy(vac['name'], vac['salary'], vac['currency'], vac['url'], vac['requirement']))
     print(sort_vac)
     return sort_vac

@@ -22,7 +22,7 @@ def interface():
         n = input('Введите количество вакансий для просмотра: \n')
         try:
             n = int(n)
-            top_vacancies = sorting(filtered_vacancies, n)
+            top_vacancies = sorting(n)
             for vac in top_vacancies:
                 print(vac)
         except ValueError:
